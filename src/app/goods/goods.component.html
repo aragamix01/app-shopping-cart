@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card-deck">
+        <div class="card" *ngFor="let goods of goods; let i=index">
+          <img class="card-img-top" src="{{goods.pics}}" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">{{goods.name}}</h4>
+            <p class="card-text">{{goods.description}}</p>
+            <p class="card-text">
+              <ng-container *ngIf="!goods.isSold; else elseTemplate">
+                <small class="text-muted sold">Sold Out</small>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <small class="text-muted">{{goods.price}} baht</small>
+              </ng-template>
+            </p>
+            <button class="btn btn-success fa fa-shopping-cart" [disabled]="!goods.isSold"> Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
