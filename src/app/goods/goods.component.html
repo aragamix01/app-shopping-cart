@@ -1,23 +1,38 @@
+<div class="jumbotron jumbotron-fluid head">
+  <div class="container">
+    <h1 class="display-3">Goods</h1>
+    <p class="lead">A shopping cart component</p>
+  </div>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-xl-12">
-      <div class="card-deck">
-        <div class="card" *ngFor="let goods of goods; let i=index">
-          <img class="card-img-top" src="{{goods.pics}}" alt="Card image cap">
-          <div class="card-block">
-            <h4 class="card-title">{{goods.name}}</h4>
-            <p class="card-text">{{goods.description}}</p>
-            <p class="card-text">
-              <ng-container *ngIf="!goods.isSold; else elseTemplate">
-                <small class="text-muted sold">Sold Out</small>
-              </ng-container>
-              <ng-template #elseTemplate>
-                <small class="text-muted">{{goods.price}} baht</small>
-              </ng-template>
-            </p>
-            <button class="btn btn-success fa fa-shopping-cart" [disabled]="!goods.isSold"> Add to cart</button>
+      <ng-container *ngIf="isData; else elseTemplate">
+        <div class="card-deck">
+          <div class="card" *ngFor="let goods of goods; let i=index">
+            <img class="card-img-top" src="{{goods.pics}}" alt="Card image cap">
+            <div class="card-block">
+              <h4 class="card-title">{{goods.name}}</h4>
+              <p class="card-text">{{goods.description}}</p>
+              <p class="card-text">
+                <ng-container *ngIf="!goods.isSold; else elseTemplate">
+                  <small class="text-muted sold">Sold Out</small>
+                </ng-container>
+                <ng-template #elseTemplate>
+                  <small class="text-muted">{{goods.price}} baht</small>
+                </ng-template>
+              </p>
+              <button 
+                class="btn btn-primary fa fa-shopping-cart" 
+                [disabled]="!goods.isSold"
+                (click)="addCarts(goods)"
+              > Add to cart</button>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <h1>Loading....</h1>
+      </ng-template>
     </div>
   </div>

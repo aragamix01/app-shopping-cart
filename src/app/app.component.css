@@ -1,8 +1,3 @@
-.head {
-  background-color: #ffee58;
-  margin-top: 50px;
-}
-
 .content {
   min-height: calc(100vh - 70px);
 }
