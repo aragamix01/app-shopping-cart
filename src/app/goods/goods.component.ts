@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {
   Component,
   OnInit
@@ -19,12 +20,13 @@ export class GoodsComponent implements OnInit {
   isData = false;
 
   constructor(private db: AngularFirestore,
-              private carts: CartService) {
+              private carts: CartService,
+              private route: Router) {
     db.collection('goods').valueChanges().subscribe(
       (data: any[]) => {
         this.goods = data;
         this.isData = true;
-        // console.log(this.goods);
+        console.log(this.goods);
       }
     );
   }
@@ -33,5 +35,6 @@ export class GoodsComponent implements OnInit {
 
   addCarts(goods: Goods) {
     this.carts.addCarts(goods);
+    this.route.navigate(['cart']);
   }
 }

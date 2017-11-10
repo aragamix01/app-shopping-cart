@@ -1,3 +1,4 @@
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from './cart.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Goods } from '../goods.model';
@@ -9,14 +10,22 @@ import { Goods } from '../goods.model';
 })
 export class CartComponent implements OnInit {
 
-  goodsCart: Goods[] = [];
+  cart: Goods;
+  buyForm: FormGroup;
+
   constructor(private carts: CartService) { }
 
   ngOnInit() {
-    this.goodsCart = this.carts.getCarts();
-    setTimeout(() => {
-      console.log(this.goodsCart);
-    }, 5000);
+    this.cart = this.carts.getCarts();
+    this.buyForm = new FormGroup({
+      'name' : new FormControl(null, Validators.required),
+      'tel': new FormControl(null, Validators.required),
+      'email': new FormControl(null, [Validators.required, Validators.email])
+    });
+  }
+
+  onSubmit() {
+    console.log(this.buyForm);
   }
 
 

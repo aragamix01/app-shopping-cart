@@ -1,0 +1,8 @@
+
+input:focus {
+    border: 2px solid rgb(255, 223, 83) !important;
+}
+
+input.ng-invalid.ng-touched {
+    border: 2px solid rgb(255, 77, 77);
+}

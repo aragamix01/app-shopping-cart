@@ -11,6 +11,9 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { CartService } from './goods/cart/cart.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { CartService } from './goods/cart/cart.service';
     CollapseModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ModalModule.forRoot(),
+    ReactiveFormsModule,
+    TextMaskModule
   ],
   providers: [CartService],
   bootstrap: [AppComponent]
